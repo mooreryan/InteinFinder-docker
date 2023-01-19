@@ -50,10 +50,12 @@ RUN make install
 ################ Download InteinFinder
 
 RUN \curl -L \
-    https://github.com/mooreryan/InteinFinder/releases/download/1.0.0-alpha/intein_finder-linux.tar.gz \
+    https://github.com/mooreryan/InteinFinder/releases/download/1.0.0-SNAPSHOT-7a303c7/InteinFinder-linux.tar.gz \
     | tar xz
-RUN mv intein_finder-linux/intein_finder /usr/local/bin
-RUN chmod +x /usr/local/bin/intein_finder
+RUN mv InteinFinder-linux/InteinFinder /usr/local/bin
+RUN chmod +x /usr/local/bin/InteinFinder
+
+################ Now, setup the final image
 
 FROM debian:bullseye-slim
 
@@ -74,7 +76,7 @@ ARG prefix_mmseqs=/opt/mmseqs
 COPY --from=builder ${prefix_blast} ${prefix_blast}
 COPY --from=builder ${prefix_mafft} ${prefix_mafft}
 COPY --from=builder ${prefix_mmseqs} ${prefix_mmseqs}
-COPY --from=builder /usr/local/bin/intein_finder /usr/local/bin
+COPY --from=builder /usr/local/bin/InteinFinder /usr/local/bin
 
 ENV PATH "${PATH}:${prefix_blast}/bin"
 ENV PATH "${PATH}:${prefix_mafft}/bin"
@@ -88,4 +90,4 @@ RUN addgroup --system intein_finder \
 USER intein_finder
 WORKDIR /home/intein_finder
 
-ENTRYPOINT [ "/usr/local/bin/intein_finder" ]
+ENTRYPOINT [ "/usr/local/bin/InteinFinder" ]
