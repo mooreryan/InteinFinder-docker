@@ -1,5 +1,5 @@
 version := "1.0.0-SNAPSHOT"
-commit := "7a303c7"
+commit := "7547273"
 full_version := version + "-" + commit
 docker_repo := "mooreryan/inteinfinder"
 img := docker_repo + ":" + full_version
