@@ -49,8 +49,9 @@ RUN make install
 
 ################ Download InteinFinder
 
+ARG IF_FULL_VERSION
 RUN \curl -L \
-    https://github.com/mooreryan/InteinFinder/releases/download/1.0.0-SNAPSHOT-7a303c7/InteinFinder-linux.tar.gz \
+    https://github.com/mooreryan/InteinFinder/releases/download/"$IF_FULL_VERSION"/InteinFinder-linux.tar.gz \
     | tar xz
 RUN mv InteinFinder-linux/InteinFinder /usr/local/bin
 RUN chmod +x /usr/local/bin/InteinFinder

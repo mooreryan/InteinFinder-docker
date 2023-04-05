@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker run \
+  --rm \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  --user $(id -u):$(id -g) \
+  mooreryan/inteinfinder:1.0.0-SNAPSHOT-7a303c7 \
+  "$@"
